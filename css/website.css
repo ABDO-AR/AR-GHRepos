@@ -1,0 +1,92 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* Variables */
+:root {
+  /* Colors */
+  --foreground-color: rgba(114, 136, 147, 0.1);
+  --background-color: linear-gradient(to right, #111, #222);
+}
+/* All */
+* {
+  /* Applying Poppins as our default font */
+  font-family: "Poppins", sans-serif;
+  /* Resetting */
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+/* Main style */
+main {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: var(--background-color);
+  flex-direction: column;
+}
+/* Top section style */
+.top-section {
+  padding-left: 128px;
+  padding-right: 128px;
+  margin-top: 128px;
+  display: flex;
+  width: 100%;
+  height: 80px;
+}
+/* Input style */
+.top-section input {
+  outline: none;
+  background: var(--foreground-color);
+  border-color: transparent;
+  color: white;
+  font-size: larger;
+  text-align: center;
+  border-radius: 8px 0 0 8px;
+  width: 100%;
+}
+/* Header style */
+img {
+  width: 80px;
+  height: 80px;
+  border-radius: 0 8px 8px 0;
+  background-color: aqua;
+}
+/* Repos section style */
+.repos-section {
+  padding-left: 128px;
+  padding-right: 128px;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, auto);
+  gap: 32px;
+  overflow: scroll;
+  height: 100%;
+  padding-top: 32px;
+}
+.repos-section::-webkit-scrollbar {
+  display: none;
+}
+/* Articles style */
+.repos-section article {
+  background: var(--foreground-color);
+  border-color: transparent;
+  overflow-x: visible;
+  flex-direction: column;
+  padding: 16px;
+  color: white;
+  border-radius: 8px;
+  transition: 0.3s ease-in-out;
+}
+.repos-section article:hover {
+  transform: scale(1.1, 1.1);
+  cursor: pointer;
+}
+.repos-section article header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.repos-section article p {
+  margin-top: 16px;
+}
