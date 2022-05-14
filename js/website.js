@@ -2,10 +2,54 @@
 let userNameInput = document.getElementById("user-name-input");
 let userPictureImg = document.getElementById("user-picture-img");
 let reposSection = document.querySelector(".repos-section");
+let connectionDiv = document.querySelector(".connection");
+let counter = document.getElementById("counter-h1");
 
-// Developing:
+// Disabling:
+userPictureImg.ondragstart = () => false;
+
+// Developing(Views):
 userNameInput.addEventListener("keyup", onInput);
 reposSection.addEventListener("click", onRepo);
+// Developing(Window):
+window.onload = onWindowLoads;
+window.addEventListener("online", onOnline);
+window.addEventListener("offline", onOffline);
+
+// Method(OnWindowLoads):
+function onWindowLoads() {
+  // Logging:
+  console.log("Loading window's");
+  // Initializing:
+  let isOnline = window.navigator.onLine;
+  // Checking:
+  if (isOnline) onOnline(null);
+  else onOffline(null);
+  // Logging:
+  console.log(`Is connection avialable -> ${isOnline}`);
+}
+
+// Method(OnOnline):
+function onOnline(event) {
+  // Inactiviting:
+  connectionDiv.classList.remove("offline");
+  connectionDiv.classList.add("online");
+  connectionDiv.classList.add("hide");
+  // Logging:
+  console.log(connectionDiv);
+  console.log("From: onOnline");
+}
+
+// Method(OnOffline):
+function onOffline(event) {
+  // Activiting:
+  connectionDiv.classList.remove("hide");
+  connectionDiv.classList.remove("online");
+  connectionDiv.classList.add("offline");
+  // Logging:
+  console.log(connectionDiv);
+  console.log("From: onOffline");
+}
 
 // Method(OnInput):
 function onInput(event) {
@@ -22,10 +66,15 @@ function onInput(event) {
 
 // Method(OnRepo):
 function onRepo(event) {
+  // Initializing:
+  let url = event.target.dataset.url;
   // Logging:
-  console.log(event.target.dataset.url);
-  // Open:
-  window.open(event.target.dataset.url);
+  console.log(url);
+  // Checking:
+  if (url !== undefined) {
+    // Open:
+    window.open(event.target.dataset.url);
+  }
 }
 
 // Method(WrtieRepos):
@@ -35,6 +84,11 @@ function writeRepos(body) {
   console.log("#".repeat(10));
   // Setting:
   userPictureImg.src = body[0].owner["avatar_url"];
+  counter.innerText = body.length;
+  // Hiding:
+  connectionDiv.classList.add("hide");
+  // Removing:
+  reposSection.innerHTML = "";
   // Looping:
   for (repo in body) {
     // Logging:
