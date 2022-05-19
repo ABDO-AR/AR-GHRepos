@@ -60,7 +60,25 @@ function onInput(event) {
     // Fetching:
     let repositories = fetch(`https://api.github.com/users/${userNameInput.value}/repos`);
     // Writing:
-    repositories.then((respone) => respone.json()).then((body) => writeRepos(body));
+    write(repositories);
+  }
+}
+
+// Method(Write):
+async function write(repositories) {
+  // Catching:
+  try {
+    // Initialzing:
+    let response = await repositories;
+    let body = await response.json();
+    // Logging:
+    console.log(response);
+    console.log(body);
+    // Writing:
+    writeRepos(body);
+  } catch (e) {
+    // Logging:
+    console.log(e);
   }
 }
 
